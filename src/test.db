@@ -1,0 +1,28 @@
+{
+  "startDates": [
+    {
+      "day": 13,
+      "month": "Kwiecień",
+      "year": 2021
+    },
+    {
+      "id": "V2B8d9gnBylw3yQG0iXHI",
+      "day": 11,
+      "month": "Maj",
+      "year": 2021
+    },
+    {
+      "id": "Q-amSuA2LSf6yylXA5S9w",
+      "day": 19,
+      "month": "Maj",
+      "year": 2021
+    },
+    {
+      "id": "1470294738",
+      "day": 2,
+      "month": "Maj",
+      "year": 2021
+    }
+  ],
+  "endDates": []
+}

@@ -1,0 +1,126 @@
+.top-menu-container{
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  height: 15%;
+}
+p{
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+}
+// hey - change this color here to see changes! It can be hex, RGB, etc!
+$main-color: hsl(330, 88%, 67%);
+
+// start
+$adjust: 30;
+$shadow: 0.75rem;
+$d: 250ms;
+$br: 1rem;
+$margin: 30px;
+@function yiq($color) {
+  $dark: #123;
+  $light: #DEF;
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+  $yiq: (($r*299) + ($g*587) + ($b*114))/1000; 
+  @if ($yiq >= 128) {
+    @return $dark;
+  }
+  @else {
+    @return $light;
+  }
+}
+@mixin btn-color($color: $main-color, $adj: $adjust) {
+  background-color: $color;
+  background-image: radial-gradient(
+    ellipse at top right,
+    rgba($color, 0) 67%
+  );
+  box-shadow: 0 $shadow 0 darken($color, 25%);
+  color: yiq($color);
+  text-shadow: 0 -0.1em 0 rgba(yiq(yiq($color)), 0.5);
+}
+@mixin btn($color: $main-color, $adj: $adjust) {
+  @include btn-color($color, $adj);
+  $focus: adjust-color($color, $hue: $adj*3);
+  &:hover,
+  &:focus {
+    outline: none;
+    @include btn-color($focus);
+    animation: 0.7s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0s 1 normal both running shake-lr;
+  }
+  &:active {
+    box-shadow: 0 0 0;
+    opacity: 0.67;
+    outline: none;
+    top: $shadow;
+  }
+}
+
+.right-side {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: $margin;
+  margin-top: $margin;
+  border-radius: $br;
+  //box-shadow: 0 2rem 1rem -1rem #123;
+
+  button {
+    appearance: none;
+    border: 0;
+    font: 2rem/1 monospace;
+    margin: 0;
+    overflow: hidden;
+    padding: 1rem 1.25rem;
+    position: relative;
+    top: 0;
+    transition: $d;
+    @include btn;
+    &:first-child,
+    &:last-child {
+      border-radius: $br;
+    }
+    &:first-child {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    }
+    &:nth-child(2) {
+      $c: adjust-color($main-color, $hue: $adjust);
+      @include btn($c);
+    }
+    &:last-child {
+      $c: adjust-color($main-color, $hue: $adjust*2);
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      @include btn($c);
+    }
+  }
+}
+
+.left-side { 
+  position: absolute;
+  margin-top: $margin;
+  margin-left: $margin;
+  top: 0%;
+  left: 0%;
+  button {
+    $c: adjust-color($main-color, $hue: $adjust*3);
+    @include btn($c);
+    appearance: none;
+    border: 0;
+    font: 2rem/1 monospace;
+    margin: 0;
+    overflow: hidden;
+    padding: 1rem 1.25rem;
+    position: relative;
+    top: 0;
+    transition: $d;
+    border-radius: $br;
+  }
+}
