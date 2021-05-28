@@ -8,7 +8,7 @@ let win;
 function createWindowFunction() {
     win = new BrowserWindow({
         title: '4Student',
-        frame: true,
+        frame: false,
         minHeight: 800,
         minWidth: 800,
         icon: path.join(__dirname, 'icon.jpg'),
@@ -65,6 +65,45 @@ ipcMain.on('full-screen-signal', () => {
 
 const api = new Api();
 
-ipcMain.on('data', (event ,arg) => {
-    api.writeStartDate(arg.day, arg.month, arg.year)
+ipcMain.on('event', (event ,arg) => {
+    api.writeEvent(arg.title, arg.date, arg.note)
+})
+ipcMain.on('exam', (event ,arg) => {
+    api.writeExam(arg.date, arg.class)
+})
+ipcMain.on('note', (event ,arg) => {
+    api.writeNote(arg.title, arg.text)
+})
+ipcMain.on('class', (event ,arg) => {
+    api.writeClass(arg.teacher, arg.class)
+})
+
+ipcMain.on('request-events', (event) => {
+    data = api.getEvents();
+    event.reply('events-sender', data);
+})
+ipcMain.on('request-classes', (event) => {
+    data = api.getClasses();
+    event.reply('classes-sender', data);
+})
+ipcMain.on('request-notes', (event) => {
+    data = api.getNotes();
+    event.reply('notes-sender', data);
+})
+ipcMain.on('request-exams', (event) => {
+    data = api.getExams();
+    event.reply('exams-sender', data);
+})
+
+ipcMain.on('delete-exam', (event,arg) => {
+    api.deleteExam(arg);
+})
+ipcMain.on('delete-event', (event,arg) => {
+    api.deleteEvent(arg);
+})
+ipcMain.on('delete-note', (event,arg) => {
+    api.deleteNote(arg);
+})
+ipcMain.on('delete-class', (event,arg) => {
+    api.deleteClass(arg);
 })

@@ -7,7 +7,7 @@ import Exam from './components/exam/index';
 import Class from './components/class/index';
 import Event from './components/event/index';
 import Day from './components/day-view/index';
-import Api from './Api';
+
 
 let calendarDay, monthNum, yearNum;
 
@@ -18,11 +18,6 @@ class App extends React.Component {
         this.state = {
             topic: 'Calendar'
         }
-    }
-    
-    foo(){   
-        const api = new Api();     
-        api.writeTestData();
     }
 
     changeTopic(newTopic){
@@ -40,7 +35,6 @@ class App extends React.Component {
         return(
         <>
             <TopMenu />
-            <button onClick={this.foo}>TEST</button>
             {this.state.topic == 'Day' ? 
             (
                 <Day changeHandler={this.changeTopic.bind(this)} day={calendarDay} month={monthNum} year={yearNum}/>
@@ -54,6 +48,7 @@ class App extends React.Component {
                     {this.state.topic == 'Exam' ? <Exam /> : ''}
                     {this.state.topic == 'Event' ? <Event /> : ''}
                     {this.state.topic == 'Class' ? <Class /> : ''}
+                    <button className="add-button">+</button>
                 </>
             )}
             

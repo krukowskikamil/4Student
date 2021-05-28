@@ -8,20 +8,49 @@ const nanoid = customAlphabet('1234567890',10);
 
 class Api {
     constructor(){
-        const dbPath = path.join(__dirname,'test.db');
+        const dbPath = path.join(__dirname,'4Student.db');
         const adapter = new FileSync(dbPath);
         db = lowdb(adapter);
-        db.defaults({ startDates: [], endDates:[]}).write();
-        
+        db.defaults({ class:[], exam:[], note:[], event:[]}).write();
     }
 
-    writeStartDate(day, month, year){
-        db.get('startDates').push({id: nanoid(), day: day, month: month, year: year}).write();
-        console.log(db);
+    writeEvent(title, date, text){
+        db.get('event').push({event_id: nanoid(), title: title, date: date, note: text}).write();
     }
-    
-    addNewDate(item){
-        db.get('dates').push(item).write();
+    writeNote(title, text){
+        db.get('note').push({note_id: nanoid(), title: title, text: text}).write();
+    }
+    writeExam(date, clas){
+        db.get('exam').push({exam_id: nanoid(), date: date, class: clas}).write();
+    }
+    writeClass(teacher, className){
+        db.get('class').push({class_id: nanoid(), teacher: teacher, class: className}).write();
+    }
+
+    getEvents(){
+        return db.get('event').value();
+    }
+    getNotes(){
+        return db.get('note').value();
+    }
+    getClasses(){
+        return db.get('class').value();
+    }
+    getExams(){
+        return db.get('exam').value();
+    }
+
+    deleteExam(id){
+        db.get('exam').remove( { exam_id: id } ).write();
+    }
+    deleteEvent(id){
+        db.get('event').remove( { event_id: id } ).write();
+    }
+    deleteNote(id){
+        db.get('note').remove( { note_id: id } ).write();
+    }
+    deleteClass(id){
+        db.get('class').remove( { class_id: id } ).write();
     }
 }
 
