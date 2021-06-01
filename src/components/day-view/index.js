@@ -15,9 +15,9 @@ class Day extends React.Component{
         this.changeTitle = this.changeTitle.bind(this);
         this.changeText = this.changeText.bind(this);
         this.changeClass = this.changeClass.bind(this);
-        this.checkTitleData = this.checkTitleData.bind(this);
-        this.checkTextData = this.checkTextData.bind(this);
-        this.checkClassData = this.checkClassData.bind(this);
+        // this.checkTitleData = this.checkTitleData.bind(this);
+        // this.checkTextData = this.checkTextData.bind(this);
+        // this.checkClassData = this.checkClassData.bind(this);
     }
     
     state ={ 
@@ -44,6 +44,9 @@ class Day extends React.Component{
         this.setState({class: event.target.value});
     }
 
+    changeCalendar() {
+        this.props.changeHandler('Calendar');
+    }
     
     sendDataToSave(data){
         if(this.state.type == "Wydarzenie"){
@@ -105,7 +108,7 @@ class Day extends React.Component{
                 <>
                     <br></br>
                     <label>Przedmiot: </label>
-                    <input type="text" onChange={this.checkClassData} onChange={this.checkData}></input>
+                    <input type="text" onChange={this.changeClass}></input>
                     {this.state.warning == true ? <div>Pole nie może być puste</div>: <></>}
                 </>
             )}
@@ -113,6 +116,7 @@ class Day extends React.Component{
             </label>
             <input type="submit" value="Zapisz" /> 
             <br/>
+            <button onClick={this.changeCalendar}>wróc</button>
         </form>
         </div>
         )
