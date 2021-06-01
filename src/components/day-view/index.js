@@ -13,17 +13,21 @@ class Day extends React.Component{
         this.sendDataToSave = this.sendDataToSave.bind(this);
         this.changeType = this.changeType.bind(this);
         this.changeTitle = this.changeTitle.bind(this);
-        // this.changeDate = this.changeDate.bind(this);
         this.changeText = this.changeText.bind(this);
         this.changeClass = this.changeClass.bind(this);
+        this.checkTitleData = this.checkTitleData.bind(this);
+        this.checkTextData = this.checkTextData.bind(this);
+        this.checkClassData = this.checkClassData.bind(this);
     }
     
     state ={ 
         type: "Egzamin",
         title: "",
-        // date: "",
         text: "",
-        class: ""
+        class: "",
+        warningTitle: false,
+        warningText: false,
+        warningClass: false
     }
 
     
@@ -33,18 +37,13 @@ class Day extends React.Component{
     changeTitle(event) {
         this.setState({title: event.target.value});
     }
-    // changeDate(event) {
-    //     this.setState({date: event.target.value});
-    // }
     changeText(event) {
         this.setState({text: event.target.value});
     }
     changeClass(event) {
         this.setState({class: event.target.value});
     }
-    changeCalendar() {
-        this.props.changeHandler('Calendar');
-    }
+
     
     sendDataToSave(data){
         if(this.state.type == "Wydarzenie"){
@@ -62,6 +61,19 @@ class Day extends React.Component{
             ipcRenderer.send('exam', data);
         }
     }
+    // checkTitleData(){
+    //     if(this.state.title ==="")
+    //         this.setState({warningTitle: true})
+    // }
+    // checkTextData(){
+    //     if(this.state.text ==="")
+    //         this.setState({warningText: true})
+    // }
+    // checkClassData(){
+    //     if(this.state.class ==="")
+    //         this.setState({warningClass: true})
+    // }
+    
 
     render() {
         return(
@@ -80,78 +92,21 @@ class Day extends React.Component{
                 <>
                     <br></br>
                     <label>Tytuł: </label>
-                    <input type="text" onChange={this.changeTitle}></input>
+                    <input type="text" onChange={this.changeTitle} onChange={this.checkTitleData}></input>
+                    {this.state.warning == true ? <div>Pole nie może być puste</div>: <></>}
                     <br></br>
-                    {/* <label>Data wydarzenia: </label>
-                    {(this.props.month + 1) > 9 ?
-                    (
-                        <>
-                        {(this.props.day) > 9 ? 
-                        (
-                            <input type="date" value={this.props.year + "-" + (this.props.month + 1) + "-" + this.props.day} onChange={this.changeDate}></input>
-                        )
-                        :
-                        (
-                            <input type="date" value={this.props.year + "-" + (this.props.month + 1) + "-0" + this.props.day} onChange={this.changeDate}></input>
-                        )
-                        }
-                        </>
-                    )
-                    :
-                    (
-                        <>
-                        {(this.props.day) > 9 ? 
-                        (
-                            <input type="date" value={this.props.year + "-0" + (this.props.month + 1) + "-" + this.props.day} onChange={this.changeDate}></input>
-                        )
-                        :
-                        (
-                            <input type="date" value={this.props.year + "-0" + (this.props.month + 1) + "-0" + this.props.day} onChange={this.changeDate}></input>
-                        )
-                        }
-                        </>                    )
-                    }
-                    <br></br> */}
                     <label>Notatka: </label>
-                    <input type="text" onChange={this.changeText}></input>
+                    <input type="text" onChange={this.changeText} onChange={this.checkTextData}></input>
+                    {this.state.warning == true ? <div>Pole nie może być puste</div>: <></>}
                 </>
             )
             :
             (
                 <>
                     <br></br>
-                    {/* <label>Data egzaminu: </label>
-                    {(this.props.month + 1) > 9 ?
-                    (
-                        <>
-                        {(this.props.day) > 9 ? 
-                        (
-                            <input type="date" value={this.props.year + "-" + (this.props.month + 1) + "-" + this.props.day} onChange={this.changeDate}></input>
-                        )
-                        :
-                        (
-                            <input type="date" value={this.props.year + "-" + (this.props.month + 1) + "-0" + this.props.day} onChange={this.changeDate}></input>
-                        )
-                        }
-                        </>
-                    )
-                    :
-                    (
-                        <>
-                        {(this.props.day) > 9 ? 
-                        (
-                            <input type="date" value={this.props.year + "-0" + (this.props.month + 1) + "-" + this.props.day} onChange={this.changeDate}></input>
-                        )
-                        :
-                        (
-                            <input type="date" value={this.props.year + "-0" + (this.props.month + 1) + "-0" + this.props.day} onChange={this.changeDate}></input>
-                        )
-                        }
-                        </>                    )
-                    }
-                    <br></br> */}
                     <label>Przedmiot: </label>
-                    <input type="text" onChange={this.changeClass}></input>
+                    <input type="text" onChange={this.checkClassData} onChange={this.checkData}></input>
+                    {this.state.warning == true ? <div>Pole nie może być puste</div>: <></>}
                 </>
             )}
             <br></br>
@@ -159,7 +114,6 @@ class Day extends React.Component{
             <input type="submit" value="Zapisz" /> 
             <br/>
         </form>
-        <button onClick={this.changeCalendar}>wróć</button>
         </div>
         )
     }

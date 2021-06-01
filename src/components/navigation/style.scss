@@ -33,3 +33,76 @@ li:active{
     background-color: rgb(70, 30, 99);
     box-shadow: -2rem 1rem 1rem -1.5rem #123;
 }
+
+
+$main-color: hsl(330, 88%, 67%);
+
+// start
+$adjust: 30;
+$shadow: 0.75rem;
+$d: 250ms;
+$br: 1rem;
+$margin: 30px;
+@function yiq($color) {
+  $dark: #123;
+  $light: #DEF;
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+  $yiq: (($r*299) + ($g*587) + ($b*114))/1000; 
+  @if ($yiq >= 128) {
+    @return $dark;
+  }
+  @else {
+    @return $light;
+  }
+}
+@mixin btn-color($color: $main-color, $adj: $adjust) {
+  background-color: $color;
+  background-image: radial-gradient(
+    ellipse at top right,
+    rgba($color, 0) 67%
+  );
+  box-shadow: 0 $shadow 0 darken($color, 25%);
+  color: yiq($color);
+  text-shadow: 0 -0.1em 0 rgba(yiq(yiq($color)), 0.5);
+}
+@mixin btn($color: $main-color, $adj: $adjust) {
+  @include btn-color($color, $adj);
+  $focus: adjust-color($color, $hue: $adj*3);
+  &:hover,
+  &:focus {
+    outline: none;
+    @include btn-color($focus);
+    animation: 0.7s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0s 1 normal both running shake-lr;
+  }
+  &:active {
+    box-shadow: 0 0 0;
+    opacity: 0.67;
+    outline: none;
+    top: $shadow;
+  }
+}
+
+.add-button-con{
+    position: absolute;
+    bottom: 3rem;
+    right: 2rem;
+    margin-right: $margin;
+    margin-top: $margin;
+    border-radius: $br;
+    button{
+      appearance: none;
+      border: 0;
+      font: 2rem/1 monospace;
+      margin: 0;
+      overflow: hidden;
+      padding: 1rem 1.25rem;
+      position: relative;
+      top: 0;
+      transition: $d;
+      $c: adjust-color($main-color, $hue: $adjust*1231);
+      @include btn($c);
+      border-radius: $br*2;
+    }
+  }

@@ -8,7 +8,7 @@ let win;
 function createWindowFunction() {
     win = new BrowserWindow({
         title: '4Student',
-        frame: false,
+        frame: true,
         minHeight: 800,
         minWidth: 800,
         icon: path.join(__dirname, 'icon.jpg'),
@@ -72,7 +72,7 @@ ipcMain.on('exam', (event ,arg) => {
     api.writeExam(arg.date, arg.class)
 })
 ipcMain.on('note', (event ,arg) => {
-    api.writeNote(arg.title, arg.text)
+    api.writeNote(arg.note_title, arg.note)
 })
 ipcMain.on('class', (event ,arg) => {
     api.writeClass(arg.teacher, arg.class)

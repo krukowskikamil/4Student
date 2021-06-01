@@ -12,10 +12,9 @@ p{
     flex-direction: row;
     align-items: center;
 }
-// hey - change this color here to see changes! It can be hex, RGB, etc!
+
 $main-color: hsl(330, 88%, 67%);
 
-// start
 $adjust: 30;
 $shadow: 0.75rem;
 $d: 250ms;

@@ -7,7 +7,8 @@ import Exam from './components/exam/index';
 import Class from './components/class/index';
 import Event from './components/event/index';
 import Day from './components/day-view/index';
-
+import SvgIcon from './components/svgIcon/index';
+import Add from './components/add-view/index';
 
 let calendarDay, monthNum, yearNum;
 
@@ -30,6 +31,7 @@ class App extends React.Component {
         yearNum = year;
 
     }
+    
 
     render(){
         return(
@@ -48,10 +50,9 @@ class App extends React.Component {
                     {this.state.topic == 'Exam' ? <Exam /> : ''}
                     {this.state.topic == 'Event' ? <Event /> : ''}
                     {this.state.topic == 'Class' ? <Class /> : ''}
-                    <button className="add-button">+</button>
+                    {this.state.topic == 'Add' ? <Add /> : ''}
                 </>
             )}
-            
         </>
         )
     }
