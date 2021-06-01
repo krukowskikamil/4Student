@@ -14,6 +14,7 @@ class Add extends React.Component {
         this.changeNoteTitle = this.changeNoteTitle.bind(this);
         this.changeNote = this.changeNote.bind(this);
         this.changeTeacher = this.changeTeacher.bind(this);
+        this.changeDate = this.changeDate.bind(this);
     }
     
     state ={ 
@@ -23,7 +24,8 @@ class Add extends React.Component {
         class: "",
         note_title: "",
         note: "",
-        teacher: ""
+        teacher: "",
+        date:""
     }
 
     
@@ -48,6 +50,9 @@ class Add extends React.Component {
     changeTeacher(event) {
         this.setState({teacher: event.target.value});
     }
+    changeDate(event) {
+        this.setState({date: event.target.value});
+    }
     changeCalendar() {
         this.props.changeHandler('Calendar');
     }
@@ -56,13 +61,13 @@ class Add extends React.Component {
         if(this.state.type == "Wydarzenie"){
             data = { 
                 title: this.state.title,
-                date: this.props.year + "-" + (this.props.month + 1) + "-" + this.props.day,
+                date: this.state.date,
                 note: this.state.text
             }
             ipcRenderer.send('event', data);
         }else if(this.state.type == "Egzamin"){
             data = { 
-                date: this.props.year + "-" + (this.props.month + 1) + "-" + this.props.day,
+                date: this.state.date,
                 class: this.state.class
             }
             ipcRenderer.send('exam', data);
@@ -86,7 +91,7 @@ class Add extends React.Component {
         return(
         <div className="add-view-con">
         <form onSubmit={this.sendDataToSave}>
-            <label>
+            <h1>
             Rodzaj wydarzenia: 
             <select value={this.state.value} onChange={this.changeType}>
                 <option value="Egzamin">Egzamin</option>
@@ -113,6 +118,9 @@ class Add extends React.Component {
                     <br></br>
                     <label>Przedmiot: </label>
                     <input type="text" onChange={this.changeClass}></input>
+                    <br></br>
+                    <label>Data:</label>
+                    <input type="date" onChange={this.changeDate}></input>
                 </>
             ) : ""}
             {this.state.type == "Notatka" ?
@@ -138,7 +146,7 @@ class Add extends React.Component {
                 </>
             ) : ""}
             <br></br>
-            </label>
+            </h1>
             <input type="submit" value="Zapisz" /> 
             <br/>
         </form>

@@ -84,7 +84,7 @@ class Day extends React.Component{
             <h1>Dzień {this.props.day} {monthList[this.props.month]} {this.props.year}</h1>
             
         <form onSubmit={this.sendDataToSave}>
-            <label>
+            <h1>
             Rodzaj wydarzenia: 
             <select value={this.state.value} onChange={this.changeType}>
                 <option value="Egzamin">Egzamin</option>
@@ -95,11 +95,11 @@ class Day extends React.Component{
                 <>
                     <br></br>
                     <label>Tytuł: </label>
-                    <input type="text" onChange={this.changeTitle} onChange={this.checkTitleData}></input>
+                    <input type="text" onChange={this.changeTitle}></input>
                     {this.state.warning == true ? <div>Pole nie może być puste</div>: <></>}
                     <br></br>
                     <label>Notatka: </label>
-                    <input type="text" onChange={this.changeText} onChange={this.checkTextData}></input>
+                    <input type="text" onChange={this.changeText}></input>
                     {this.state.warning == true ? <div>Pole nie może być puste</div>: <></>}
                 </>
             )
@@ -113,7 +113,7 @@ class Day extends React.Component{
                 </>
             )}
             <br></br>
-            </label>
+            </h1>
             <input type="submit" value="Zapisz" /> 
             <br/>
             <button onClick={this.changeCalendar}>wróc</button>

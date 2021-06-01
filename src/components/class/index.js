@@ -29,7 +29,7 @@ class Classes extends React.Component {
                     <h1>Przedmioty</h1>
                     {
                     this.state.classes.map((element) => {
-                        return <div key={element.class_id}>{element.teacher}/{element.class}
+                        return <div className="element" key={element.class_id}>{element.teacher}/{element.class}
                          <button key={element.class_id} onClick={() => this.sendDeleteClass(element.class_id)}>kosz</button>
                          </div>
                     })

@@ -32,7 +32,7 @@ class Exam extends React.Component {
                     this.state.exams.map((element) => {
                         return (
                         <>
-                        <div key={element.exam_id}>{element.class}/{element.date}
+                        <div className="element" key={element.exam_id}>{element.class}/{element.date}
                         <button key={element.exam_id} onClick={() => this.sendDeleteExam(element.exam_id)}>kosz</button>
                         </div>
                         </>)

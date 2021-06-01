@@ -30,7 +30,7 @@ class Events extends React.Component {
                     <h1>Wydarzenia</h1>
                     {
                     this.state.events.map((element) => {
-                        return <div key={element.event_id}>{element.date}/{element.title}/{element.note}
+                        return <div className="element" key={element.event_id}>{element.date}/{element.title}/{element.note}
                         <button key={element.event_id} onClick={() => this.sendDeleteEvent(element.event_id)}>kosz</button>
                         </div>
                     })

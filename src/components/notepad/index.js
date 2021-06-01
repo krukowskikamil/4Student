@@ -29,7 +29,7 @@ class Notepad extends React.Component{
                     <h1>Notatki</h1>
                     {
                     this.state.notes.map((element) => {
-                        return <div key={element.note_id}>{element.title}/{element.text}
+                        return <div className="element" key={element.note_id}>{element.title}/{element.text}
                         <button key={element.note_id} onClick={() => this.sendDeleteNote(element.note_id)}>kosz</button>
                         </div>
                     })
