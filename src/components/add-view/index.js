@@ -109,7 +109,9 @@ class Add extends React.Component {
                     <br></br>
                     <label>Notatka: </label>
                     <input type="text" onChange={this.changeText}></input>
-                    {this.state.warning == true ? <div>Pole nie może być puste</div>: <></>}
+                    <br></br>
+                    <label>Data:</label>
+                    <input type="date" onChange={this.changeDate}></input>
                 </>
             ) : ""}
             {this.state.type == "Egzamin" ?
