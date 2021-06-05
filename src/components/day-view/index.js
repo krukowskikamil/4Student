@@ -27,9 +27,20 @@ class Day extends React.Component{
         class: "",
         warningTitle: false,
         warningText: false,
-        warningClass: false
+        warningClass: false,
+        elements: []
     }
-
+    componentDidMount(){
+        let date = {
+            year: this.props.year,
+            month: this.props.month+1,
+            day: this.props.day
+        }
+        ipcRenderer.send('data-by-date',date);
+        ipcRenderer.on('data-by-date-sender', (event, arg) => {
+            this.setState({elements: arg});
+        })
+    }
     
     changeType(event) {
         this.setState({type: event.target.value});
@@ -118,6 +129,31 @@ class Day extends React.Component{
             <br/>
             <button onClick={this.changeCalendar}>wróc</button>
         </form>
+        {
+            this.state.elements.map((element) => {
+                return (
+                    <> 
+                    {element.message == "empty" ? 
+                    (<>
+                    </>)
+                    :
+                    (<>
+                    {element.event_id == null ? 
+                    (<>
+                    <div className="element-" key={element.exam_id}>{element.date}/{element.class}
+                    </div>
+                    </>)
+                    :
+                    (<>
+                    <div className="element-" key={element.event_id}>{element.date}/{element.title}/{element.note}
+                    </div>
+                        </>)}
+                    </>)
+                    }
+                    </>
+                    )
+                    })
+                }
         </div>
         )
     }

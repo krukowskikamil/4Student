@@ -77,6 +77,13 @@ ipcMain.on('note', (event ,arg) => {
 ipcMain.on('class', (event ,arg) => {
     api.writeClass(arg.teacher, arg.class)
 })
+ipcMain.on('data-by-date', (event, arg) => {
+    data =[];
+    data.push(api.getExamByDate(arg.year, arg.month, arg.day));
+    data.push(api.getEventByDate(arg.year, arg.month, arg.day));
+    console.log(data)
+    event.reply('data-by-date-sender', data);
+})
 
 ipcMain.on('request-events', (event) => {
     data = api.getEvents();

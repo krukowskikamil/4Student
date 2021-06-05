@@ -39,6 +39,20 @@ class Api {
     getExams(){
         return db.get('exam').value();
     }
+    getExamByDate(year, month, day){  
+        if(db.get('exam').find({date: year+"-"+month+"-"+day}).value() == null){
+            return {message: "empty"}
+        }else{
+            return  db.get('exam').find({date: year+"-"+month+"-"+day}).value();
+        }    
+    }
+    getEventByDate(year, month, day){
+        if(db.get('event').find({date: year+"-"+month+"-"+day}).value() == null){
+            return {message: "empty"}
+        }else{
+            return  db.get('event').find({date: year+"-"+month+"-"+day}).value();
+        }
+    }
 
     deleteExam(id){
         db.get('exam').remove( { exam_id: id } ).write();
