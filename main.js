@@ -81,7 +81,6 @@ ipcMain.on('data-by-date', (event, arg) => {
     data =[];
     data.push(api.getExamByDate(arg.year, arg.month, arg.day));
     data.push(api.getEventByDate(arg.year, arg.month, arg.day));
-    console.log(data)
     event.reply('data-by-date-sender', data);
 })
 
