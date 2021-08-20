@@ -1,3 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@200&display=swap');
+
 .add-view-con{
-    text-align: center;
+    text-align: left;
+    font-family: 'Antonio', sans-serif;
+    margin-left: 25%;
+}
+.icon{
+    float: right;
+    margin-right: 40%;
+}
+input{
+    font-size: 1.2rem;
+    color: #000;
+    background-color: rgb(245, 162, 61);
+    border-radius: 0.5rem;
+    margin-left: 1%;
+    height: 2rem;
+    width: 27%;
+}
+textarea{
+    font-size: 1.2rem;
+    color: #000;
+    background-color: rgb(245, 162, 61);
+    border-radius: 0.5rem;
+    margin-left: 1%;
+}
+select{
+    font-size: 1.2rem;
+    color: #000;
+    background-color: rgb(245, 162, 61);
+    border-radius: 0.5rem;
+}
+#save{
+    margin-left: 25%;
+
+    background-color: rgb(245, 162, 61);
+    border-radius: 0.5rem;
+    padding: 1%;
 }

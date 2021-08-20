@@ -7,10 +7,11 @@ import Exam from './components/exam/index';
 import Class from './components/class/index';
 import Event from './components/event/index';
 import Day from './components/day-view/index';
-import SvgIcon from './components/svgIcon/index';
+import Edit from './components/edit-view/index';
 import Add from './components/add-view/index';
 
-let calendarDay, monthNum, yearNum;
+
+let calendarDay, monthNum, yearNum, prevState, element_id;
 
 class App extends React.Component {
     constructor(props){
@@ -29,9 +30,12 @@ class App extends React.Component {
         calendarDay = day;
         monthNum = month;
         yearNum = year;
-
     }
-    
+    changeTopicEdit(newTopic, previousState, elem_id){
+        this.setState({topic: newTopic});
+        prevState = previousState;
+        element_id = elem_id;
+    }
 
     render(){
         return(
@@ -46,11 +50,12 @@ class App extends React.Component {
                 <>
                     <Navigation changeHandler={this.changeTopic.bind(this)}/>
                     {this.state.topic == 'Calendar' ? <Calendar changeHandler={this.changeTopicDay.bind(this)}/> : ''}
-                    {this.state.topic == 'Notepad' ? <Notepad /> : ''}
-                    {this.state.topic == 'Exam' ? <Exam /> : ''}
-                    {this.state.topic == 'Event' ? <Event /> : ''}
-                    {this.state.topic == 'Class' ? <Class /> : ''}
+                    {this.state.topic == 'Notepad' ? <Notepad changeHandler={this.changeTopicEdit.bind(this)}/> : ''}
+                    {this.state.topic == 'Exam' ? <Exam changeHandler={this.changeTopicEdit.bind(this)}/> : ''}
+                    {this.state.topic == 'Event' ? <Event changeHandler={this.changeTopicEdit.bind(this)}/> : ''}
+                    {this.state.topic == 'Class' ? <Class changeHandler={this.changeTopicEdit.bind(this)}/> : ''}
                     {this.state.topic == 'Add' ? <Add /> : ''}
+                    {this.state.topic == 'Edit' ? <Edit changeHandler={this.changeTopic.bind(this)} preState={prevState} id={element_id}/> : ''}
                 </>
             )}
         </>

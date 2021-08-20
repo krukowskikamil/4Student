@@ -75,20 +75,7 @@ class Day extends React.Component{
             ipcRenderer.send('exam', data);
         }
     }
-    // checkTitleData(){
-    //     if(this.state.title ==="")
-    //         this.setState({warningTitle: true})
-    // }
-    // checkTextData(){
-    //     if(this.state.text ==="")
-    //         this.setState({warningText: true})
-    // }
-    // checkClassData(){
-    //     if(this.state.class ==="")
-    //         this.setState({warningClass: true})
-    // }
     
-
     render() {
         return(
         <div className="day-view-conteainer">
@@ -125,9 +112,9 @@ class Day extends React.Component{
             )}
             <br></br>
             </h1>
-            <input type="submit" value="Zapisz" /> 
+            <button id="but1" type="submit" value="Zapisz">Zapisz</button> 
             <br/>
-            <button onClick={this.changeCalendar}>wróc</button>
+            <button id="but2" onClick={this.changeCalendar}>wróc</button>
         </form>
         {
             this.state.elements.map((element) => {

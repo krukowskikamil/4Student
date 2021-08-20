@@ -1,7 +1,10 @@
+.element-con{ 
+    max-height: 55%;  
+    overflow: auto;
+}
 .element{
     padding: 1rem;
     background-color: bisque;
     margin-bottom: 1rem;
-    margin-left: 19% ;
     border-radius: 1rem;
 }

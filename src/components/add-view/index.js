@@ -1,4 +1,5 @@
 import React from 'react';
+import SvgIcon from '../svgIcon';
 
 import './style.scss';
 
@@ -92,17 +93,19 @@ class Add extends React.Component {
         <div className="add-view-con">
         <form onSubmit={this.sendDataToSave}>
             <h1>
-            Rodzaj wydarzenia: 
+            Co chcesz dodac? :)) <br></br>
             <select value={this.state.value} onChange={this.changeType}>
                 <option value="Egzamin">Egzamin</option>
                 <option value="Wydarzenie">Wydarzenie</option>
                 <option value="Notatka">Notatka</option>
                 <option value="Przedmiot">Przedmiot</option>
             </select>
+            
             {this.state.type == "Wydarzenie" ? 
             (
                 <>
                     <br></br>
+                    <div className="icon"><SvgIcon name = "event" /></div>
                     <label>Tytuł: </label>
                     <input type="text" onChange={this.changeTitle}></input>
                     
@@ -118,6 +121,7 @@ class Add extends React.Component {
             (
                 <>
                     <br></br>
+                    <div className="icon"><SvgIcon name = "exam" /></div>
                     <label>Przedmiot: </label>
                     <input type="text" onChange={this.changeClass}></input>
                     <br></br>
@@ -129,17 +133,19 @@ class Add extends React.Component {
             (
                 <>
                     <br></br>
+                    <div className="icon"><SvgIcon name = "note" /></div>
                     <label>Tytuł: </label>
                     <input type="text" onChange={this.changeNoteTitle}></input>
-                    <br></br>
+                    <br></br><br></br>
                     <label>Treść: </label>
-                    <input type="text" onChange={this.changeNote}></input>
+                    <textarea rows="3" cols="60" name="text" form="addform" onChange={this.changeNote}>Miejsce na notatke...</textarea>
                 </>
             ) : ""}
             {this.state.type == "Przedmiot" ?
             (
                 <>
                     <br></br>
+                    <div className="icon"><SvgIcon name = "class" /></div>
                     <label>Przedmiot: </label>
                     <input type="text" onChange={this.changeClass}></input>
                     <br></br>
@@ -149,10 +155,9 @@ class Add extends React.Component {
             ) : ""}
             <br></br>
             </h1>
-            <input type="submit" value="Zapisz" /> 
+            <button id="save"type="submit" value="Zapisz">Zapisz</button>
             <br/>
         </form>
-        <button onClick={this.changeCalendar}>wróć</button>
         </div>
         )
     }

@@ -113,3 +113,20 @@ ipcMain.on('delete-note', (event,arg) => {
 ipcMain.on('delete-class', (event,arg) => {
     api.deleteClass(arg);
 })
+
+ipcMain.on('get-exam-by-id', (event, arg) => {
+    data = api.getExamById(arg);
+    event.reply('send-exam-by-id', data);
+})
+ipcMain.on('get-event-by-id', (event, arg) => {
+    data = api.getEventById(arg);
+    event.reply('send-event-by-id', data);
+})
+ipcMain.on('get-class-by-id', (event, arg) => {
+    data = api.getClassById(arg);
+    event.reply('send-class-by-id', data);
+})
+ipcMain.on('get-note-by-id', (event, arg) => {
+    data = api.getNoteById(arg);
+    event.reply('send-note-by-id', data);
+})

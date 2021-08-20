@@ -1,7 +1,18 @@
+.element-con{ 
+    max-height: 55%;  
+    overflow: auto;
+}
 .element{
+    font-size: 1.25rem;
     padding: 1rem;
     background-color: bisque;
     margin-bottom: 1rem;
-    margin-left: 19% ;
     border-radius: 1rem;
+}
+.pen{
+    float: right;
+    padding-right: 2%;
+}
+.trash{
+    float: right;
 }

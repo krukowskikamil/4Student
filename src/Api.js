@@ -66,6 +66,19 @@ class Api {
     deleteClass(id){
         db.get('class').remove( { class_id: id } ).write();
     }
+
+    getExamById(id){
+        return db.get('exam').find({exam_id: id}).value();
+    }
+    getEventById(id){
+        return db.get('event').find({event_id: id}).value();
+    }
+    getNoteById(id){
+        return db.get('note').find({note_id: id}).value();
+    }
+    getClassById(id){
+        return db.get('class').find({class_id: id}).value();
+    }
 }
 
 module.exports = Api;
