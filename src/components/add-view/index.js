@@ -138,7 +138,7 @@ class Add extends React.Component {
                     <input type="text" onChange={this.changeNoteTitle}></input>
                     <br></br><br></br>
                     <label>Treść: </label>
-                    <textarea rows="3" cols="60" name="text" form="addform" onChange={this.changeNote}>Miejsce na notatke...</textarea>
+                    <textarea rows="3" cols="60" name="text" form="addform" onChange={this.changeNote}>Miejsce na notatkę...</textarea>
                 </>
             ) : ""}
             {this.state.type == "Przedmiot" ?

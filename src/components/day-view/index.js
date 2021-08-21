@@ -83,7 +83,8 @@ class Day extends React.Component{
             
         <form onSubmit={this.sendDataToSave}>
             <h1>
-            Rodzaj wydarzenia: 
+            Co chcesz dodać? :))
+            <br></br>
             <select value={this.state.value} onChange={this.changeType}>
                 <option value="Egzamin">Egzamin</option>
                 <option value="Wydarzenie">Wydarzenie</option>
